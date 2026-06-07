@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, useMemo } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
+
+import api from "../api/api";
 
 function ManageDrugsPage() {
   const [drugs, setDrugs] = useState([]);
@@ -92,7 +93,7 @@ function ManageDrugsPage() {
 
   const fetchDrugs = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/drugs");
+      const res = await api.get("/api/drugs");
       setDrugs(res.data);
     } catch (error) {
       console.error("Failed to fetch drugs:", error);
@@ -104,7 +105,7 @@ function ManageDrugsPage() {
     if (!confirmDelete) return;
 
     try {
-      await axios.delete(`http://localhost:5000/api/drugs/${id}`);
+      await api.delete(`/api/drugs/${id}`);
       fetchDrugs();
     } catch (error) {
       console.error("Failed to delete drug:", error);

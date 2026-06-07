@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+
+import api from "../api/api";
 import RxSpinner from "../components/RxSpinner";
 
 function FlashcardPage() {
@@ -18,7 +19,7 @@ function FlashcardPage() {
   // ---------------- FETCH CATEGORIES ----------------
   const fetchCategories = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/drugs");
+      const res = await api.get("/api/drugs");
 
       const allCategories = new Set();
 
@@ -37,8 +38,8 @@ function FlashcardPage() {
   // ---------------- FETCH CARDS ----------------
   const fetchCards = async () => {
     try {
-      const res = await axios.get(
-        `http://localhost:5000/api/drugs?category=${selectedCategory}&forSammy=${sammyOnly}`,
+      const res = await api.get(
+        `/api/drugs?category=${selectedCategory}&forSammy=${sammyOnly}`,
       );
 
       const formatted = res.data.map((drug) => ({

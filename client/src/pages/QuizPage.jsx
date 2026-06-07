@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+
+import api from "../api/api";
 import { useNavigate, useLocation } from "react-router-dom";
 import RxSpinner from "../components/RxSpinner";
 
@@ -37,7 +38,7 @@ function QuizPage() {
 
   const startQuiz = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/drugs");
+      const res = await api.get("/api/drugs");
 
       let drugs = [...res.data];
 
@@ -88,7 +89,7 @@ function QuizPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const res = await axios.post("http://localhost:5000/api/drugs/check", {
+    const res = await api.post("/api/drugs/check", {
       drugId: drug._id,
       answer,
       mode: drug.mode,
@@ -126,10 +127,7 @@ function QuizPage() {
 
   const updateDifficulty = async (difficulty) => {
     try {
-      await axios.patch(
-        `http://localhost:5000/api/drugs/${drug._id}/difficulty`,
-        { difficulty },
-      );
+      await api.patch(`/api/drugs/${drug._id}/difficulty`, { difficulty });
     } catch (error) {
       console.error(error);
     }

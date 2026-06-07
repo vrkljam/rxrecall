@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+
+import api from "../api/api";
 import "../app.css";
 
 function AddDrugPage() {
@@ -20,7 +21,7 @@ function AddDrugPage() {
     e.preventDefault();
 
     try {
-      await axios.post("http://localhost:5000/api/drugs", {
+      await api.post("/api/drugs", {
         brandNames: brandNames.split(",").map((b) => b.trim()),
         genericNames: genericNames.split(",").map((g) => g.trim()),
         categories: categories.split(",").map((c) => c.trim()),
@@ -210,158 +211,3 @@ function AddDrugPage() {
 }
 
 export default AddDrugPage;
-
-// <div className="container mt-5">
-//   <div className="card p-4 shadow">
-//     <h2 className="mb-4">Add Drug</h2>
-
-//     <form onSubmit={handleSubmit}>
-//       <div className="mb-3">
-//         <label htmlFor="brandNames" className="form-label">
-//           Brand Names
-//         </label>
-//         <input
-//           id="brandNames"
-//           type="text"
-//           className="form-control"
-//           placeholder="Brand Names (comma separated)"
-//           value={brandNames}
-//           onChange={(e) => setBrandNames(e.target.value)}
-//           required
-//         />
-//       </div>
-
-//       <div className="mb-3">
-//         <label htmlFor="genericNames" className="form-label">
-//           Generic Name
-//         </label>
-//         <input
-//           id="genericNames"
-//           type="text"
-//           className="form-control"
-//           placeholder="Generic Name"
-//           value={genericNames}
-//           onChange={(e) => setGenericNames(e.target.value)}
-//           required
-//         />
-//       </div>
-
-//       <div className="mb-3">
-//         <label htmlFor="categories" className="form-label">
-//           Categories
-//         </label>
-//         <input
-//           id="categories"
-//           type="text"
-//           className="form-control"
-//           placeholder="Categories (comma separated)"
-//           value={categories}
-//           onChange={(e) => setCategories(e.target.value)}
-//         />
-//       </div>
-
-//       <div className="mb-3">
-//         <label htmlFor="drugClasses" className="form-label">
-//           Drug Class
-//         </label>
-//         <input
-//           id="drugClasses"
-//           type="text"
-//           className="form-control"
-//           placeholder="Drug Class"
-//           value={drugClasses}
-//           onChange={(e) => setDrugClasses(e.target.value)}
-//         />
-//       </div>
-
-//       <div className="mb-3">
-//         <label htmlFor="difficulty" className="form-label">
-//           Difficulty
-//         </label>
-//         <select
-//           id="difficulty"
-//           className="form-select"
-//           value={difficulty}
-//           onChange={(e) => setDifficulty(e.target.value)}
-//         >
-//           <option value="easy">Easy</option>
-//           <option value="normal">Normal</option>
-//           <option value="hard">Hard</option>
-//         </select>
-//       </div>
-
-//       <div className="mb-3">
-//         <label htmlFor="indications" className="form-label">
-//           Indications
-//         </label>
-//         <input
-//           id="indications"
-//           type="text"
-//           className="form-control"
-//           placeholder="Indications (comma separated)"
-//           value={indications}
-//           onChange={(e) => setIndications(e.target.value)}
-//         />
-//       </div>
-
-//       <div className="mb-3">
-//         <label htmlFor="aliases" className="form-label">
-//           Aliases
-//         </label>
-//         <input
-//           id="aliases"
-//           type="text"
-//           className="form-control"
-//           placeholder="Aliases (comma separated)"
-//           value={aliases}
-//           onChange={(e) => setAliases(e.target.value)}
-//         />
-//       </div>
-
-//       <div className="mb-3">
-//         <label htmlFor="mechanism" className="form-label">
-//           Mechanism
-//         </label>
-//         <input
-//           id="mechanism"
-//           type="text"
-//           className="form-control"
-//           placeholder="Mechanism of Action"
-//           value={mechanism}
-//           onChange={(e) => setMechanism(e.target.value)}
-//         />
-//       </div>
-
-//       <div className="mb-3">
-//         <label htmlFor="sideEffects" className="form-label">
-//           Side Effects
-//         </label>
-//         <input
-//           id="sideEffects"
-//           type="text"
-//           className="form-control"
-//           placeholder="Side Effects (comma separated)"
-//           value={sideEffects}
-//           onChange={(e) => setSideEffects(e.target.value)}
-//         />
-//       </div>
-
-//       <div className="mb-3">
-//         <label htmlFor="notes" className="form-label">
-//           Notes / PT Concerns
-//         </label>
-//         <textarea
-//           id="notes"
-//           className="form-control"
-//           placeholder="Notes"
-//           value={notes}
-//           onChange={(e) => setNotes(e.target.value)}
-//         />
-//       </div>
-
-//       <button className="btn btn-primary w-100" type="submit">
-//         Add Drug
-//       </button>
-//     </form>
-//   </div>
-// </div>

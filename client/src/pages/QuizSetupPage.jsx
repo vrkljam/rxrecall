@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+
+import api from "../api/api";
 
 function QuizSetupPage() {
   const navigate = useNavigate();
@@ -27,7 +28,7 @@ function QuizSetupPage() {
 
   const fetchCategories = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/drugs");
+      const res = await api.get("/api/drugs");
 
       const allCategories = res.data.flatMap((drug) => drug.categories || []);
 

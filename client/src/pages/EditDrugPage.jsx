@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import axios from "axios";
+
+import api from "../api/api";
 
 function EditDrugPage() {
   const { id } = useParams();
@@ -32,7 +33,7 @@ function EditDrugPage() {
 
   const fetchDrug = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/drugs/${id}`);
+      const res = await api.get(`/api/drugs/${id}`);
       const drug = res.data;
 
       if (!drug) return;
@@ -56,7 +57,7 @@ function EditDrugPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:5000/api/drugs/${id}`, {
+      await api.put(`/api/drugs/${id}`, {
         brandNames: stringToArray(brandNames),
         genericNames: stringToArray(genericNames),
         categories: stringToArray(categories),
