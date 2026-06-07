@@ -1,0 +1,236 @@
+/* =========================================
+   THEME VARIABLES
+========================================= */
+
+:root {
+  --bg: #f4f8fb;
+  --card: #ffffff;
+  --text: #1f2933;
+  --muted: #64748b;
+  --border: #e2e8f0;
+
+  --primary: #0fb8a9;
+  --danger: #ef4444;
+  --success: #22c55e;
+
+  --input-bg: #ffffff;
+  --input-text: #1f2933;
+}
+
+/* DARK MODE */
+[data-theme="dark"] {
+  --bg: #0b1220;
+  --card: #111827;
+  --text: #e5e7eb;
+  --muted: #9ca3af;
+  --border: #1f2937;
+
+  --primary: #0fb8a9;
+  --danger: #f87171;
+  --success: #34d399;
+
+  --input-bg: #0f172a;
+  --input-text: #e5e7eb;
+}
+
+/* ================================
+   DARK MODE OVERRIDES (FIX WHITE UI)
+================================ */
+
+[data-theme="dark"] body {
+  background: var(--bg);
+}
+
+[data-theme="dark"] .table {
+  --bs-table-bg: var(--card);
+  --bs-table-striped-bg: #0f1b2d;
+  --bs-table-striped-color: var(--text);
+  color: var(--text);
+}
+
+[data-theme="dark"] .table-striped > tbody > tr:nth-of-type(odd) {
+  background-color: #0f1b2d !important;
+}
+
+[data-theme="dark"] .modal-content {
+  background: var(--card);
+  color: var(--text);
+}
+
+[data-theme="dark"] input,
+[data-theme="dark"] textarea,
+[data-theme="dark"] select {
+  background: var(--input-bg) !important;
+  color: var(--input-text) !important;
+  border-color: var(--border) !important;
+}
+/* =========================================
+   GLOBAL STYLES
+========================================= */
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
+}
+
+.card {
+  border-radius: 14px;
+  background-color: var(--card-bg) !important;
+  border: 1px solid var(--border) !important;
+  color: var(--text);
+}
+
+.table {
+  color: var(--text);
+  background: var(--card);
+}
+
+.table thead {
+  color: var(--text);
+  background: var(--card);
+}
+
+.form-control,
+.form-select {
+  border-radius: 8px;
+  background-color: var(--card-bg);
+  color: var(--input-text);
+  border-color: var(--border);
+}
+
+.form-control::placeholder {
+  color: var(--muted);
+}
+
+.text-muted {
+  color: var(--muted) !important;
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+
+/* =========================================
+   TEAL LOGO (Filled Version)
+========================================= */
+
+.rx-logo-container {
+  background: var(--logo-bg);
+  border-radius: 20px;
+  padding: 32px 28px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.rx-logo-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.rx-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--primary);
+  letter-spacing: -0.3px;
+  line-height: 1;
+}
+
+.rx-title span {
+  color: var(--primary);
+}
+
+.rx-subtitle {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* =========================================
+   LIGHT / CRISP LOGO
+========================================= */
+
+.rx-logo-light-container {
+  background: var(--logo-light-bg);
+  border-radius: 20px;
+  padding: 32px 28px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.rx-logo-light-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.rx-light-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--primary);
+  letter-spacing: -0.3px;
+  line-height: 1;
+}
+
+.rx-light-title span {
+  color: var(--primary);
+}
+
+.rx-light-subtitle {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* =========================================
+   SPINNER
+========================================= */
+
+.rx-spin {
+  animation: rxspin 1.1s linear infinite;
+  transform-origin: 250px 250px;
+}
+
+@keyframes rxspin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.rx-spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+
+.nav-link {
+  color: var(--text) !important;
+  font-weight: 500;
+  font-size: 1.05rem;
+}
+
+.nav-link:hover {
+  color: var(--primary) !important;
+}
+
+.navbar-brand {
+  color: var(--text) !important;
+}

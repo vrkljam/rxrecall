@@ -1,0 +1,9 @@
+POST http://localhost:5000/api/drugs/check
+Content-Type: application/json
+
+{
+  "drugId": "69ffaf2252b2bee4dc8a933a",
+  "answer": "Synthroid"
+}
+
+# worked
