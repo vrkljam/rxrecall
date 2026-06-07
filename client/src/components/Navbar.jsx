@@ -16,34 +16,22 @@ function Navbar() {
           className="navbar-brand d-flex align-items-center gap-2"
           to="/"
           style={{
-            fontSize: "1.5rem",
+            fontSize: "1.4rem",
             fontWeight: "800",
             color: "var(--text)",
           }}
         >
-          {/* Logo */}
           <div
             style={{
-              width: "32px",
-              height: "32px",
+              width: "36px",
+              height: "36px",
+              flexShrink: 0,
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
             }}
           >
-            <Link
-              className="navbar-brand d-flex align-items-center gap-2"
-              to="/"
-              style={{
-                fontSize: "1.5rem",
-                fontWeight: "800",
-                color: "var(--text)",
-              }}
-            >
-              <div style={{ width: "34px", height: "34px" }}>
-                <RxRecallLogo />
-              </div>
-            </Link>
+            <RxRecallLogo />
           </div>
           RxRecall
         </Link>
