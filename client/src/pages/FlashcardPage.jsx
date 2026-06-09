@@ -13,6 +13,7 @@ function FlashcardPage() {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [categories, setCategories] = useState([]);
   const [sammyOnly, setSammyOnly] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const MAX_FLIPS = 7;
 
@@ -38,21 +39,35 @@ function FlashcardPage() {
   // ---------------- FETCH CARDS ----------------
   const fetchCards = async () => {
     try {
+      setLoading(true);
+
+      const startTime = Date.now();
+
       const res = await api.get(
         `/api/drugs?category=${selectedCategory}&forSammy=${sammyOnly}`,
       );
 
       const formatted = res.data.map((drug) => ({
-        front: drug.brandNames[0] || drug.genericNames,
-        back: drug.genericNames,
+        brand: drug.brandNames?.[0] || "N/A",
+        generic: drug.genericNames || "N/A",
       }));
 
+      const elapsed = Date.now() - startTime;
+      const remaining = 800 - elapsed;
+
+      if (remaining > 0) {
+        await new Promise((resolve) => setTimeout(resolve, remaining));
+      }
+
+      // 🔥 Now safely update everything
       setCards(formatted);
       setCurrentIndex(0);
       setFlipped(false);
       setFlipCount(0);
+      setLoading(false);
     } catch (error) {
       console.error(error);
+      setLoading(false);
     }
   };
 
@@ -89,8 +104,13 @@ function FlashcardPage() {
     setShowLimitOverlay(false);
   };
 
-  // if (cards.length === 0) return <h2>Loading cards...</h2>;
-  if (cards.length === 0) return <RxSpinner variant="light" size={120} />;
+  if (loading)
+    return (
+      <div className="text-center mt-5">
+        <RxSpinner variant="light" size={120} />
+        <p className="mt-3 text-muted">Preparing your memory deck...</p>
+      </div>
+    );
 
   const scale = 1 - flipCount * 0.04;
   const glow = flipCount * 5;
@@ -103,10 +123,10 @@ function FlashcardPage() {
     padding: "30px",
     textAlign: "center",
     fontWeight: "bold",
-    fontSize: "1.8rem",
+    fontSize: "2rem",
     background: `radial-gradient(circle at center, rgba(0, 200, 120, ${
       0.1 + flipCount * 0.03
-    }) 0%, #fff 100%)`,
+    }) 0%, var(--flashcard-bg) 100%)`,
     transform: `scale(${scale})`,
     boxShadow: `inset 0 0 ${glow}px rgba(0, 200, 120, ${
       0.3 + flipCount * 0.05
@@ -137,7 +157,7 @@ function FlashcardPage() {
 
   return (
     <div className="container mt-5 d-flex flex-column align-items-center">
-      <h2 className="mb-4">Memory Flashcards</h2>
+      <h2 className="mb-4 flash-title">Memory Flashcards</h2>
 
       {/* CATEGORY SELECT */}
       <select
@@ -162,14 +182,36 @@ function FlashcardPage() {
           onChange={(e) => setSammyOnly(e.target.checked)}
           id="sammyOnly"
         />
-        <label className="form-check-label" htmlFor="sammyOnly">
+        <label
+          className="form-check-label fw-semibold flash-meta"
+          htmlFor="sammyOnly"
+        >
           Sammy Only
         </label>
       </div>
 
       {/* CARD */}
-      <div onClick={handleFlip} style={cardStyle}>
-        {flipped ? cards[currentIndex].back : cards[currentIndex].front}
+      <div
+        onClick={handleFlip}
+        className="flashcard"
+        style={{
+          transform: `scale(${scale})`,
+          boxShadow: `inset 0 0 ${glow}px rgba(0, 200, 120, ${
+            0.3 + flipCount * 0.05
+          })`,
+        }}
+      >
+        {flipped ? (
+          <div>
+            <div className="flashcard-label">Generic Name:</div>
+            <div>{cards[currentIndex].generic}</div>
+          </div>
+        ) : (
+          <div>
+            <div className="flashcard-label">Brand Name:</div>
+            <div>{cards[currentIndex].brand}</div>
+          </div>
+        )}
       </div>
 
       {/* NAV */}
@@ -182,7 +224,7 @@ function FlashcardPage() {
         </button>
       </div>
 
-      <p className="mt-3 text-muted">
+      <p className="mt-3 flash-meta">
         Flip count: {flipCount} | Card {currentIndex + 1} of {cards.length}
       </p>
 

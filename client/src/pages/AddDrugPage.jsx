@@ -58,17 +58,21 @@ function AddDrugPage() {
     <div className="container mt-5">
       <div className="card shadow-lg border-0">
         <div className="card-body p-5">
-          <h2 className="text-center mb-4 fw-bold">Add New Drug</h2>
+          <h2 className="text-center mb-4 fw-bold adddrug-title">
+            Add New Drug
+          </h2>
 
           <form onSubmit={handleSubmit}>
             {/* ================= BASIC INFO ================= */}
-            <h5 className="text-uppercase text-muted mb-3">
+            <h5 className="text-uppercase adddrug-section mb-3">
               Basic Information
             </h5>
 
             <div className="row">
               <div className="col-md-6 mb-3">
-                <label className="form-label fw-semibold">Brand Names</label>
+                <label className="form-label fw-semibold adddrug-label">
+                  Brand Names
+                </label>
                 <input
                   type="text"
                   className="form-control"
@@ -77,13 +81,15 @@ function AddDrugPage() {
                   onChange={(e) => setBrandNames(e.target.value)}
                   required
                 />
-                <div className="form-text">
+                <div className="form-text adddrug-meta">
                   Separate multiple names with commas.
                 </div>
               </div>
 
               <div className="col-md-6 mb-3">
-                <label className="form-label fw-semibold">Generic Name</label>
+                <label className="form-label fw-semibold adddrug-label">
+                  Generic Name
+                </label>
                 <input
                   type="text"
                   className="form-control"
@@ -97,7 +103,9 @@ function AddDrugPage() {
 
             <div className="row">
               <div className="col-md-6 mb-3">
-                <label className="form-label fw-semibold">Categories</label>
+                <label className="form-label fw-semibold adddrug-label">
+                  Categories
+                </label>
                 <input
                   type="text"
                   className="form-control"
@@ -108,7 +116,9 @@ function AddDrugPage() {
               </div>
 
               <div className="col-md-6 mb-3">
-                <label className="form-label fw-semibold">Drug Class</label>
+                <label className="form-label fw-semibold adddrug-label">
+                  Drug Class
+                </label>
                 <input
                   type="text"
                   className="form-control"
@@ -121,12 +131,14 @@ function AddDrugPage() {
 
             {/* ================= CLINICAL INFO ================= */}
             <hr className="my-4" />
-            <h5 className="text-uppercase text-muted mb-3">
+            <h5 className="text-uppercase adddrug-section mb-3">
               Clinical Information
             </h5>
 
             <div className="mb-3">
-              <label className="form-label fw-semibold">Indications</label>
+              <label className="form-label fw-semibold adddrug-label">
+                Indications
+              </label>
               <textarea
                 className="form-control"
                 rows="2"
@@ -137,7 +149,7 @@ function AddDrugPage() {
             </div>
 
             <div className="mb-3">
-              <label className="form-label fw-semibold">
+              <label className="form-label fw-semibold adddrug-label">
                 Mechanism of Action
               </label>
               <textarea
@@ -150,7 +162,9 @@ function AddDrugPage() {
             </div>
 
             <div className="mb-3">
-              <label className="form-label fw-semibold">Side Effects</label>
+              <label className="form-label fw-semibold adddrug-label">
+                Side Effects
+              </label>
               <textarea
                 className="form-control"
                 rows="2"
@@ -161,7 +175,9 @@ function AddDrugPage() {
             </div>
 
             <div className="mb-3">
-              <label className="form-label fw-semibold">Aliases</label>
+              <label className="form-label fw-semibold adddrug-label">
+                Aliases
+              </label>
               <input
                 type="text"
                 className="form-control"
@@ -176,7 +192,9 @@ function AddDrugPage() {
 
             <div className="row align-items-center">
               <div className="col-md-6 mb-3">
-                <label className="form-label fw-semibold">Difficulty</label>
+                <label className="form-label fw-semibold adddrug-label">
+                  Difficulty
+                </label>
                 <select
                   className="form-select"
                   value={difficulty}
@@ -190,7 +208,7 @@ function AddDrugPage() {
             </div>
 
             <div className="mb-4">
-              <label className="form-label fw-semibold">
+              <label className="form-label fw-semibold adddrug-label">
                 Notes / Patient Concerns
               </label>
               <textarea

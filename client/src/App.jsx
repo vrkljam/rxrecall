@@ -9,17 +9,13 @@ import QuizSetupPage from "./pages/QuizSetupPage";
 import FlashcardPage from "./pages/FlashcardPage";
 import HomePage from "./pages/HomePage";
 import "./app.css";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 
 function App() {
   const location = useLocation();
-  const [theme, setTheme] = useState("light");
-
-  useEffect(() => {
-    const saved = localStorage.getItem("theme");
-    if (saved) setTheme(saved);
-  }, []);
+  const [theme, setTheme] = useState(() => {
+    return localStorage.getItem("theme") || "light";
+  });
 
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
@@ -28,16 +24,10 @@ function App() {
 
   return (
     <>
-      <button
-        className="btn btn-sm btn-outline-secondary position-fixed top-0 end-0 m-3"
-        onClick={() =>
-          setTheme((prev) => (prev === "light" ? "dark" : "light"))
-        }
-      >
-        {theme === "light" ? "Dark Mode" : "Light Mode"}
-      </button>
       {/* <Navbar /> */}
-      {location.pathname !== "/" && <Navbar />}
+      {location.pathname !== "/" && (
+        <Navbar theme={theme} setTheme={setTheme} />
+      )}
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/quiz-setup" element={<QuizSetupPage />} />

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
+import RxSpinner from "../components/RxSpinner";
 import api from "../api/api";
 
 function QuizSetupPage() {
@@ -11,6 +11,7 @@ function QuizSetupPage() {
   const [mode, setMode] = useState("brand-to-generic");
   const [categories, setCategories] = useState([]);
   const [sammyOnly, setSammyOnly] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const startQuiz = () => {
     navigate("/quiz", {
@@ -28,24 +29,46 @@ function QuizSetupPage() {
 
   const fetchCategories = async () => {
     try {
+      setLoading(true);
+      const startTime = Date.now();
+
       const res = await api.get("/api/drugs");
 
       const allCategories = res.data.flatMap((drug) => drug.categories || []);
 
       const uniqueCategories = [...new Set(allCategories)].sort();
 
-      setCategories(uniqueCategories);
+      const elapsed = Date.now() - startTime;
+      const remaining = 700 - elapsed; // 700ms minimum spinner time
+
+      setTimeout(
+        () => {
+          setCategories(uniqueCategories);
+          setLoading(false);
+        },
+        remaining > 0 ? remaining : 0,
+      );
     } catch (error) {
       console.error("Failed to fetch categories:", error);
+      setLoading(false);
     }
   };
+
+  if (loading) {
+    return (
+      <div className="text-center mt-5">
+        <RxSpinner variant="light" size={120} />
+        <p className="mt-3 quiz-meta">Preparing your quiz setup...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="container mt-5">
       <div className="card p-4 shadow">
-        <h1 className="text-center mb-4">RxRecall</h1>
+        <h1 className="text-center mb-4 quiz-title">RxRecall</h1>
 
-        <h4 className="mb-4">Quiz Setup</h4>
+        <h4 className="mb-4 quiz-subtitle">Quiz Setup</h4>
 
         {/* <button
           className="btn btn-outline-info"
@@ -62,7 +85,9 @@ function QuizSetupPage() {
         </button> */}
 
         <div className="mb-4">
-          <label className="form-label fw-semibold">Number of Questions</label>
+          <label className="form-label fw-semibold quiz-label">
+            Number of Questions
+          </label>
 
           <select
             className="form-select"
@@ -77,7 +102,7 @@ function QuizSetupPage() {
         </div>
 
         <div className="mb-4">
-          <label className="form-label fw-semibold">Category</label>
+          <label className="form-label fw-semibold quiz-label">Category</label>
 
           <select
             className="form-select"
@@ -104,7 +129,7 @@ function QuizSetupPage() {
               id="sammyCheck"
             />
             <label
-              className="form-check-label fw-semibold"
+              className="form-check-label fw-semibold quiz-label"
               htmlFor="sammyCheck"
             >
               Sammy Only
@@ -113,7 +138,7 @@ function QuizSetupPage() {
         </div>
 
         <div className="mb-4">
-          <label className="form-label fw-semibold">Quiz Mode</label>
+          <label className="form-label fw-semibold quiz-label">Quiz Mode</label>
 
           <div className="btn-group w-100">
             <button

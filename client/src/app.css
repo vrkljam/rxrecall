@@ -15,31 +15,91 @@
 
   --input-bg: #ffffff;
   --input-text: #1f2933;
+
+  --logo-bg: var(--card);
+  --logo-light-bg: var(--card);
+
+  --flashcard-bg: #ffffff;
 }
 
 /* DARK MODE */
 [data-theme="dark"] {
-  --bg: #0b1220;
-  --card: #111827;
-  --text: #e5e7eb;
-  --muted: #9ca3af;
+  --bg: #0b1220; /* deeper navy */
+  --card: #111827; /* slightly darker surface */
+
+  /* Teal-infused typography */
+  --text: #d1fae5; /* soft mint */
+  --muted: #5eead4; /* light teal accent */
   --border: #1f2937;
 
-  --primary: #0fb8a9;
+  --primary: #14b8a6; /* controlled teal */
   --danger: #f87171;
   --success: #34d399;
 
   --input-bg: #0f172a;
-  --input-text: #e5e7eb;
+  --input-text: #d1fae5;
+
+  --logo-bg: var(--card);
+  --logo-light-bg: var(--card);
+
+  /* Flashcard surface */
+  --flashcard-bg: #0f1f1d;
 }
 
+/* =========================
+   DARK MODE SELECT IMPROVEMENT
+========================= */
+
+[data-theme="dark"] .form-select {
+  background-color: #0f172a;
+  color: #d1fae5;
+  border: 1px solid #14b8a6;
+}
+
+[data-theme="dark"] .form-select:focus {
+  border-color: #2dd4bf;
+  box-shadow: 0 0 0 0.2rem rgba(20, 184, 166, 0.25);
+}
+
+/* Dark mode placeholder improvement */
+
+[data-theme="dark"] .form-control::placeholder,
+[data-theme="dark"] textarea::placeholder {
+  color: #5eead4; /* soft teal */
+  opacity: 0.7;
+}
+/* old DARK MODE */
+/* [data-theme="dark"] {
+              --bg: #0f172a; deep navy, not black
+              --card: #1e293b; elevated surface
+              --text: #f1f5f9; soft white
+              --muted: #94a3b8; muted gray-blue
+              --border: #334155; visible but subtle border
+
+              --primary: #2dd4bf; brighter teal pop */
+/* --danger: #f87171;
+              --success: #4ade80;
+
+              --input-bg: #1e293b;
+              --input-text: #f1f5f9;
+
+              --logo-bg: var(--card);
+              --logo-light-bg: var(--card);
+
+              --flashcard-bg: #1e293b;
+            } */
 /* ================================
    DARK MODE OVERRIDES (FIX WHITE UI)
 ================================ */
 
 [data-theme="dark"] body {
-  background: var(--bg);
+  background: radial-gradient(circle at top, #0b1220, #060b16);
 }
+
+/* old one */
+/* [data-theme="dark"] body {
+  background: var(--bg);
+} */
 
 [data-theme="dark"] .table {
   --bs-table-bg: var(--card);
@@ -57,12 +117,30 @@
   color: var(--text);
 }
 
-[data-theme="dark"] input,
 [data-theme="dark"] textarea,
-[data-theme="dark"] select {
-  background: var(--input-bg) !important;
-  color: var(--input-text) !important;
-  border-color: var(--border) !important;
+[data-theme="dark"] input:not(.form-check-input),
+[data-theme="dark"] select:not(.form-select) {
+  background: var(--input-bg);
+  color: var(--input-text);
+  border-color: var(--border);
+}
+
+/* =========================
+   DARK MODE CHECKBOX FIX
+========================= */
+
+[data-theme="dark"] .form-check-input {
+  background-color: #0f172a;
+  border: 1px solid #14b8a6;
+}
+
+[data-theme="dark"] .form-check-input:checked {
+  background-color: #14b8a6;
+  border-color: #14b8a6;
+}
+
+[data-theme="dark"] .form-check-input:focus {
+  box-shadow: 0 0 0 0.2rem rgba(20, 184, 166, 0.25);
 }
 /* =========================================
    GLOBAL STYLES
@@ -78,9 +156,13 @@ body {
 
 .card {
   border-radius: 14px;
-  background-color: var(--card-bg) !important;
+  background-color: var(--card) !important;
   border: 1px solid var(--border) !important;
   color: var(--text);
+}
+
+hr {
+  border-color: var(--border);
 }
 
 .table {
@@ -96,13 +178,20 @@ body {
 .form-control,
 .form-select {
   border-radius: 8px;
-  background-color: var(--card-bg);
+  background-color: var(--input-bg);
   color: var(--input-text);
   border-color: var(--border);
 }
 
-.form-control::placeholder {
+/* =========================
+   PLACEHOLDER STYLING
+========================= */
+
+.form-control::placeholder,
+.form-select::placeholder,
+textarea::placeholder {
   color: var(--muted);
+  opacity: 0.8;
 }
 
 .text-muted {
@@ -196,6 +285,66 @@ body {
   color: var(--muted);
 }
 
+/* =========================
+   HOME PAGE
+========================= */
+
+.home-title {
+  color: var(--text);
+}
+
+.home-subtitle {
+  color: var(--muted);
+  font-size: 1.1rem;
+}
+
+/* Optional: better dark contrast */
+[data-theme="dark"] .home-title {
+  color: var(--text);
+}
+
+[data-theme="dark"] .home-subtitle {
+  color: var(--muted);
+}
+
+/* home page buttons */
+
+/* Container */
+.home-button-container {
+  max-width: 500px;
+}
+
+/* Base button style */
+.home-btn {
+  padding: 40px;
+  font-size: 2rem;
+  font-weight: bold;
+  border-radius: 25px;
+  border: none;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+/* Hover effect (nice upgrade) */
+.home-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 35px rgba(255, 255, 255, 0.3);
+}
+
+/* Quiz gradient */
+.quiz-btn {
+  background: linear-gradient(90deg, #ff00cc, #3333ff);
+  box-shadow: 0 0 25px rgba(255, 0, 204, 0.6);
+}
+
+/* Flash gradient */
+.flash-btn {
+  background: linear-gradient(90deg, #00ff88, #00b3ff);
+  box-shadow: 0 0 25px rgba(0, 255, 136, 0.5);
+}
 /* =========================================
    SPINNER
 ========================================= */
@@ -233,4 +382,168 @@ body {
 
 .navbar-brand {
   color: var(--text) !important;
+}
+
+.flashcard {
+  width: 420px;
+  min-height: 260px;
+  border-radius: 20px;
+  padding: 30px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--flashcard-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  transition: all 0.3s ease-in-out;
+}
+
+/* old one */
+/* [data-theme="dark"] .flashcard {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+} */
+[data-theme="dark"] .flashcard {
+  background: linear-gradient(145deg, #0f1f1d, #0c2623);
+  border: 1px solid #134e4a;
+  color: #5eead4;
+
+  box-shadow:
+    0 0 15px rgba(20, 184, 166, 0.2),
+    inset 0 0 10px rgba(20, 184, 166, 0.1);
+}
+
+.flashcard-label {
+  font-size: 1rem;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.btn-secondary {
+  background-color: var(--border);
+  color: var(--text);
+  border: none;
+}
+
+[data-theme="dark"] .btn-secondary {
+  background-color: #334155;
+  color: var(--text);
+}
+
+/* =========================
+   FLASHCARD PAGE TEXT FIX
+========================= */
+
+.flash-title {
+  color: var(--text);
+  font-weight: 700;
+}
+
+.flash-meta {
+  color: var(--muted);
+}
+
+/* Dark mode flashcard typography enhancement */
+[data-theme="dark"] .flash-title {
+  color: #2dd4bf;
+}
+
+[data-theme="dark"] .flash-meta {
+  color: #14b8a6;
+}
+
+/* Ensure form labels in dark mode are readable */
+[data-theme="dark"] .form-check-label {
+  color: var(--text);
+}
+
+/* Select dropdown text fix */
+select {
+  color: var(--text);
+}
+
+.form-check-input {
+  width: 1.2em;
+  height: 1.2em;
+}
+
+/* =========================
+   QUIZ SETUP PAGE STYLING
+========================= */
+
+.quiz-title {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.quiz-subtitle {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.quiz-label {
+  color: var(--text);
+}
+
+.quiz-meta {
+  color: var(--muted);
+}
+
+/* Dark mode quiz enhancements */
+[data-theme="dark"] .quiz-title {
+  color: #2dd4bf;
+}
+
+[data-theme="dark"] .quiz-subtitle {
+  color: #5eead4;
+}
+
+[data-theme="dark"] .quiz-label {
+  color: #d1fae5;
+}
+
+[data-theme="dark"] .quiz-meta {
+  color: #14b8a6;
+}
+
+/* =========================
+   ADD DRUG PAGE
+========================= */
+
+.adddrug-title {
+  color: var(--primary);
+}
+
+.adddrug-section {
+  color: var(--muted);
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.adddrug-label {
+  color: var(--text);
+}
+
+.adddrug-meta {
+  color: var(--muted);
+}
+
+/* Dark mode - Add Drug page */
+
+[data-theme="dark"] .adddrug-title {
+  color: #2dd4bf;
+}
+
+[data-theme="dark"] .adddrug-section {
+  color: #5eead4;
+}
+
+[data-theme="dark"] .adddrug-label {
+  color: #d1fae5;
+}
+
+[data-theme="dark"] .adddrug-meta {
+  color: #14b8a6;
 }

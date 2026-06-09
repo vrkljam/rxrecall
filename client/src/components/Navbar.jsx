@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import RxRecallLogo from "../components/RxRecallLogo";
-function Navbar() {
+function Navbar({ theme, setTheme }) {
   return (
     <nav
       className="navbar navbar-expand-lg"
@@ -51,6 +51,14 @@ function Navbar() {
             Manage Drugs
           </Link>
         </div>
+        <button
+          className="btn btn-sm btn-outline-secondary"
+          onClick={() =>
+            setTheme((prev) => (prev === "light" ? "dark" : "light"))
+          }
+        >
+          {theme === "light" ? "🌙 Dark" : "☀️ Light"}
+        </button>
       </div>
     </nav>
   );
