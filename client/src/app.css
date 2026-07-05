@@ -102,14 +102,25 @@
 } */
 
 [data-theme="dark"] .table {
-  --bs-table-bg: var(--card);
+  --bs-table-bg: #111827;
+  --bs-table-color: #d1fae5;
   --bs-table-striped-bg: #0f1b2d;
-  --bs-table-striped-color: var(--text);
-  color: var(--text);
+  --bs-table-striped-color: #d1fae5;
+  --bs-table-hover-bg: #172554;
+  --bs-table-hover-color: #d1fae5;
+
+  color: #d1fae5;
 }
 
 [data-theme="dark"] .table-striped > tbody > tr:nth-of-type(odd) {
   background-color: #0f1b2d !important;
+}
+
+[data-theme="dark"] {
+  --bs-table-color: #d1fae5;
+  --bs-table-striped-color: #d1fae5;
+  --bs-table-bg: #111827;
+  --bs-table-striped-bg: #0f1b2d;
 }
 
 [data-theme="dark"] .modal-content {
@@ -285,6 +296,20 @@ textarea::placeholder {
   color: var(--muted);
 }
 
+.table-sticky-header {
+  position: sticky;
+  top: 0;
+  z-index: 1010;
+  padding: 15px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  background: var(--card);
+  color: var(--text);
+}
+
+[data-theme="dark"] .table-sticky-header {
+  background: #111827;
+  color: #d1fae5;
+}
 /* =========================
    HOME PAGE
 ========================= */
@@ -506,6 +531,41 @@ select {
 
 [data-theme="dark"] .quiz-meta {
   color: #14b8a6;
+}
+
+/* =========================
+   QUIZ PAGE FIXES
+========================= */
+
+.quiz-title {
+  color: var(--primary);
+}
+
+.quiz-meta {
+  color: var(--muted);
+}
+
+.quiz-label {
+  color: var(--text);
+}
+
+.quiz-value {
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* dark mode refinement */
+[data-theme="dark"] .quiz-title {
+  color: #2dd4bf;
+}
+
+[data-theme="dark"] .quiz-meta {
+  color: #5eead4;
+}
+
+[data-theme="dark"] .quiz-label,
+[data-theme="dark"] .quiz-value {
+  color: #d1fae5;
 }
 
 /* =========================

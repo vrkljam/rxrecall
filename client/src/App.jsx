@@ -7,9 +7,10 @@ import EditDrugPage from "./pages/EditDrugPage";
 import ReviewPage from "./pages/ReviewPage";
 import QuizSetupPage from "./pages/QuizSetupPage";
 import FlashcardPage from "./pages/FlashcardPage";
-import HomePage from "./pages/HomePage";
 import "./app.css";
 import { useState, useEffect } from "react";
+import DashboardPage from "./pages/DashboardPage";
+import LandingPage from "./pages/LandingPage";
 
 function App() {
   const location = useLocation();
@@ -29,7 +30,8 @@ function App() {
         <Navbar theme={theme} setTheme={setTheme} />
       )}
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/app" element={<DashboardPage />} />
         <Route path="/quiz-setup" element={<QuizSetupPage />} />
         <Route path="/quiz" element={<QuizPage />} />
         <Route path="/add-drug" element={<AddDrugPage />} />

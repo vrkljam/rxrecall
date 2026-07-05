@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import RxRecallLogo from "../components/RxRecallLogo";
 
-function HomePage() {
+function DashboardPage() {
   const navigate = useNavigate();
 
   return (
@@ -29,4 +29,4 @@ function HomePage() {
   );
 }
 
-export default HomePage;
+export default DashboardPage;

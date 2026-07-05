@@ -1,0 +1,61 @@
+.landing-page {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #f8fbff, #eef6ff);
+  color: #223;
+}
+
+.hero {
+  padding: 90px 20px 70px;
+  max-width: 850px;
+  margin: auto;
+}
+
+.hero-tagline {
+  font-size: 1.5rem;
+  color: #3f5f84;
+}
+
+.hero-description {
+  max-width: 650px;
+  margin: 25px auto;
+  font-size: 1.1rem;
+}
+
+.feature-card {
+  background: white;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  transition: 0.25s;
+}
+
+.feature-card:hover {
+  transform: translateY(-6px);
+}
+
+.audience-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+}
+
+.audience-list span {
+  background: white;
+  padding: 12px 22px;
+  border-radius: 999px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.disclaimer {
+  background: #fff7e6;
+  border-left: 5px solid #ffb300;
+  border-radius: 12px;
+  padding: 30px;
+}
+
+.landing-footer {
+  text-align: center;
+  padding: 40px 20px;
+  color: #666;
+}
