@@ -1,0 +1,104 @@
+.dashboard-page {
+  min-height: 100vh;
+  animation: fadeIn 0.4s ease-in;
+  padding-top: 50px;
+  padding-bottom: 60px;
+}
+
+.dashboard-page h1 {
+  font-size: 2.75rem;
+  letter-spacing: -0.5px;
+}
+
+.dashboard-page p {
+  font-size: 1.1rem;
+}
+
+/* page fade-in */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* cards */
+.study-card {
+  background: linear-gradient(180deg, #ffffff, #fafcff);
+  border-radius: 18px;
+  padding: 32px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  /* subtle entrance animation */
+  animation: cardPop 0.5s ease both;
+}
+
+@keyframes cardPop {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* hover interaction */
+.study-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* text */
+.study-card p {
+  color: #666;
+  margin-top: 8px;
+}
+
+.study-card h2 {
+  margin-bottom: 12px;
+  transition: transform 0.25s;
+}
+
+.study-card:hover h2 {
+  transform: scale(1.03);
+}
+
+/* action link */
+.card-action {
+  margin-top: 18px;
+  font-weight: 600;
+  color: #0d6efd;
+  transition: transform 0.2s ease;
+}
+
+.study-card:hover .card-action {
+  transform: translateX(6px);
+}
+
+/* accent borders */
+.quiz-card {
+  border-left: 6px solid #ff6b6b;
+}
+
+.flash-card {
+  border-left: 6px solid #4dabf7;
+}
+
+/* responsive tweak */
+@media (max-width: 768px) {
+  .study-card {
+    padding: 24px;
+  }
+}

@@ -11,6 +11,10 @@ import "./app.css";
 import { useState, useEffect } from "react";
 import DashboardPage from "./pages/DashboardPage";
 import LandingPage from "./pages/LandingPage";
+import NotFoundPage from "./pages/NotFoundPage";
+import AboutPage from "./pages/AboutPage";
+import PrivacyPage from "./pages/PrivacyPage";
+import DisclaimerPage from "./pages/DisclaimerPage";
 
 function App() {
   const location = useLocation();
@@ -23,10 +27,12 @@ function App() {
     localStorage.setItem("theme", theme);
   }, [theme]);
 
+  const hideNavbar = ["/"];
+
   return (
     <>
       {/* <Navbar /> */}
-      {location.pathname !== "/" && (
+      {!hideNavbar.includes(location.pathname) && (
         <Navbar theme={theme} setTheme={setTheme} />
       )}
       <Routes>
@@ -39,6 +45,11 @@ function App() {
         <Route path="/edit-drug/:id" element={<EditDrugPage />} />
         <Route path="/review" element={<ReviewPage />} />
         <Route path="/flashcards" element={<FlashcardPage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/privacy" element={<PrivacyPage />} />
+        <Route path="/disclaimer" element={<DisclaimerPage />} />
+
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </>
   );

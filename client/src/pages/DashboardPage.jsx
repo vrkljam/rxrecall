@@ -1,29 +1,41 @@
 import { useNavigate } from "react-router-dom";
-import RxRecallLogo from "../components/RxRecallLogo";
+
+import "./DashboardPage.css";
 
 function DashboardPage() {
   const navigate = useNavigate();
 
   return (
-    <div className="container d-flex flex-column justify-content-center align-items-center vh-100">
-      <RxRecallLogo size={140} />
-      <h1 className="display-3 fw-bold mb-3 home-title">RxRecall</h1>
+    <div className="dashboard-page container py-5">
+      {/* Header */}
+      <div className="text-center mb-5">
+        <h1 className="mt-3 fw-bold">Welcome back</h1>
+        <p className="text-muted">Choose how you'd like to study today</p>
+      </div>
 
-      <p className="home-subtitle mb-5">Study smarter. Memorize faster.</p>
-      <div className="d-grid gap-4 w-100 home-button-container">
-        <button
-          onClick={() => navigate("/quiz-setup")}
-          className="home-btn quiz-btn"
-        >
-          ⚡ QUIZ BATTLE
-        </button>
+      {/* Action Cards */}
+      <div className="row g-4 justify-content-center">
+        <div className="col-md-5">
+          <div
+            className="study-card quiz-card"
+            onClick={() => navigate("/quiz-setup")}
+          >
+            <h2>⚡ Quiz Mode</h2>
+            <p>Test your knowledge with randomized questions.</p>
+            <div className="card-action">Start Quiz →</div>
+          </div>
+        </div>
 
-        <button
-          onClick={() => navigate("/flashcards")}
-          className="home-btn flash-btn"
-        >
-          🧬 FLASH MODE
-        </button>
+        <div className="col-md-5">
+          <div
+            className="study-card flash-card"
+            onClick={() => navigate("/flashcards")}
+          >
+            <h2>🧬 Flashcards</h2>
+            <p>Review medications using active recall.</p>
+            <div className="card-action">Open Flashcards →</div>
+          </div>
+        </div>
       </div>
     </div>
   );

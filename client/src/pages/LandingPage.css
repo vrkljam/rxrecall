@@ -2,35 +2,108 @@
   min-height: 100vh;
   background: linear-gradient(180deg, #f8fbff, #eef6ff);
   color: #223;
+  animation: pageFade 0.5s ease-out;
+}
+.landing-page section {
+  padding: 70px 20px;
+}
+
+.landing-page section + section {
+  border-top: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.landing-page .container {
+  max-width: 1100px;
+}
+
+@keyframes pageFade {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .hero {
-  padding: 90px 20px 70px;
-  max-width: 850px;
+  padding: 100px 20px 70px;
+  max-width: 900px;
   margin: auto;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 3.5rem;
+  letter-spacing: -1px;
 }
 
 .hero-tagline {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   color: #3f5f84;
+  margin-top: 10px;
 }
 
 .hero-description {
-  max-width: 650px;
+  max-width: 700px;
   margin: 25px auto;
+  font-size: 1.15rem;
+  color: #555;
+}
+
+.hero-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+/* override default h1 spacing */
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+.landing-page button {
+  background: linear-gradient(135deg, #4dabf7, #339af0);
+  border: none;
+  padding: 14px 34px;
+  border-radius: 999px;
   font-size: 1.1rem;
+  font-weight: 600;
+  color: white;
+  box-shadow: 0 10px 25px rgba(77, 171, 247, 0.25);
+  transition: all 0.2s ease;
+}
+
+.landing-page button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(77, 171, 247, 0.35);
 }
 
 .feature-card {
   background: white;
-  border-radius: 16px;
-  padding: 30px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-  transition: 0.25s;
+  border-radius: 18px;
+  padding: 32px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+  transition: all 0.25s ease;
+  height: 100%;
 }
 
 .feature-card:hover {
   transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.1);
+}
+
+.feature-card h3 {
+  margin-bottom: 10px;
+  font-weight: 600;
 }
 
 .audience-list {
@@ -58,4 +131,131 @@
   text-align: center;
   padding: 40px 20px;
   color: #666;
+}
+
+/* keep everything above content */
+.floating-bg {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* make sure content sits above blobs */
+.landing-page {
+  position: relative;
+  z-index: 1;
+}
+
+/* base blob style */
+.blob {
+  position: absolute;
+  border-radius: 999px;
+  opacity: 0.18;
+  filter: blur(2px);
+  animation: float 28s infinite ease-in-out;
+  will-change: transform;
+}
+
+/* different sizes + positions */
+.b1 {
+  width: 180px;
+  height: 180px;
+  background: #4dabf7;
+  top: 10%;
+  left: 5%;
+  animation-delay: 0s;
+  animation-duration: 4s;
+}
+
+.b2 {
+  width: 120px;
+  height: 120px;
+  background: #ff6b6b;
+  top: 60%;
+  left: 10%;
+  animation-delay: -8s;
+  animation-duration: 4s;
+}
+
+.b3 {
+  width: 220px;
+  height: 220px;
+  background: #51cf66;
+  top: 20%;
+  right: 8%;
+  animation-delay: -14s;
+  animation-duration: 6s;
+}
+
+.b4 {
+  width: 140px;
+  height: 140px;
+  background: #845ef7;
+  bottom: 10%;
+  right: 15%;
+  animation-delay: -24s;
+  animation-duration: 8s;
+}
+
+/* floating motion */
+@keyframes float {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  50% {
+    transform: translate(40px, -30px) scale(1.05);
+  }
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+}
+
+.row.g-4 {
+  row-gap: 24px;
+}
+.landing-footer {
+  padding: 60px 20px;
+  text-align: center;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  margin-top: 70px;
+}
+
+.footer-title {
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.footer-description {
+  color: #666;
+  margin-bottom: 25px;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin-bottom: 25px;
+}
+
+.footer-links button {
+  background: none;
+  border: none;
+  color: #0d6efd;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.footer-links button:hover {
+  text-decoration: underline;
+}
+
+.footer-disclaimer {
+  max-width: 650px;
+  margin: auto;
+  color: #777;
+  font-size: 0.9rem;
+  line-height: 1.5;
 }

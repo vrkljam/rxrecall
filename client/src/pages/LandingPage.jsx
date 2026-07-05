@@ -7,11 +7,18 @@ function LandingPage() {
 
   return (
     <div className="landing-page">
+      <div className="floating-bg">
+        <span className="blob b1"></span>
+        <span className="blob b2"></span>
+        <span className="blob b3"></span>
+        <span className="blob b4"></span>
+      </div>
       {/* Hero */}
       <section className="hero text-center">
-        <RxRecallLogo size={150} />
-
-        <h1 className="display-2 fw-bold mt-4">RxRecall</h1>
+        <div className="hero-brand">
+          <RxRecallLogo size={150} />
+          <h1 className="hero-title">RxRecall</h1>
+        </div>
 
         <p className="lead hero-tagline">
           Master medication knowledge through active recall.
@@ -92,9 +99,24 @@ function LandingPage() {
       {/* Footer */}
 
       <footer className="landing-footer">
-        <p>© 2026 RxRecall</p>
+        <p className="footer-title">© 2026 RxRecall</p>
 
-        <p>Built for learning. Not for clinical decision making.</p>
+        <p className="footer-description">
+          Educational study tool for medication learning.
+        </p>
+
+        <div className="footer-links">
+          <button onClick={() => navigate("/about")}>About</button>
+
+          <button onClick={() => navigate("/privacy")}>Privacy</button>
+
+          <button onClick={() => navigate("/disclaimer")}>Disclaimer</button>
+        </div>
+
+        <p className="footer-disclaimer">
+          Not intended for medical advice, diagnosis, treatment, or clinical
+          decision making.
+        </p>
       </footer>
     </div>
   );
