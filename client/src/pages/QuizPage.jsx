@@ -167,14 +167,16 @@ function QuizPage() {
 
   return (
     <div className="container mt-5">
-      <h2 className="mb-4 text-center">RxRecall</h2>
+      <h2 className="mb-4 text-center quiz-title">RxRecall</h2>
       <div className="mb-4">
         <div className="d-flex justify-content-between mb-1">
-          <small>
+          <small className="quiz-meta">
             Question {currentIndex + 1} of {questionLimit}
           </small>
 
-          <small>{Math.round((currentIndex / questionLimit) * 100)}%</small>
+          <small className="quiz-meta">
+            {Math.round((currentIndex / questionLimit) * 100)}%
+          </small>
         </div>
 
         <div className="progress">
@@ -188,8 +190,8 @@ function QuizPage() {
         </div>
       </div>
       <div className="card border-0 mb-4">
-        <h3 className="text-center mb-4">{drug.question}</h3>
-        <p className="text-center text-muted">
+        <h3 className="text-center mb-4 quiz-meta">{drug.question}</h3>
+        <p className="text-center quiz-meta">
           Mode:{" "}
           {drug.mode === "brand-to-generic"
             ? "Brand → Generic"
@@ -263,21 +265,23 @@ function QuizPage() {
         )}
         <div className="row text-center mb-4">
           <div className="col">
-            <h5>Score</h5>
-            <p>{score}</p>
+            <h5 className="quiz-label">Score</h5>
+            <p className="quiz-value">{score}</p>
           </div>
           <div className="col">
-            <h5>Questions</h5>
-            <p>{questionCount}</p>
+            <h5 className="quiz-label">Questions</h5>
+            <p className="quiz-value">{questionCount}</p>
           </div>
           <div className="col">
-            <h5>Streak</h5>
-            <p className={streak >= 5 ? "text-success fw-bold" : ""}>
+            <h5 className="quiz-label">Streak</h5>
+            <p
+              className={`quiz-value ${streak >= 5 ? "text-success fw-bold" : ""}`}
+            >
               {streak}
             </p>
           </div>
         </div>
-        <p className="text-center text-muted">
+        <p className="text-center quiz-meta">
           Accuracy:{" "}
           {questionCount === 0 ? 0 : Math.round((score / questionCount) * 100)}%
         </p>

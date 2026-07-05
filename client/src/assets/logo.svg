@@ -1,0 +1,31 @@
+<svg
+  viewBox="0 0 500 500"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <rect width="500" height="500" rx="108" fill="#0FB8A9" />
+
+  <path
+    d="M 331.50,108.84 A 163,163 0 1,1 168.50,108.84"
+    stroke="#FFFFFF"
+    stroke-width="26"
+    fill="none"
+    stroke-linecap="round"
+  />
+
+  <polygon
+    points="30,0 -12,18 -12,-18"
+    transform="translate(168.50,108.84) rotate(-30)"
+    fill="#162E5F"
+  />
+
+  <text
+    x="250"
+    y="318"
+    text-anchor="middle"
+    font-family="Georgia, serif"
+    font-size="188"
+    fill="#FFFFFF"
+  >
+    Rx
+  </text>
+</svg>

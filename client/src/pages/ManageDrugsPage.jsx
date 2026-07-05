@@ -139,9 +139,9 @@ function ManageDrugsPage() {
       {/* Sticky Area (full width context) */}
       <div>
         <div className="container">
-          <h2 className="mb-2">Manage Drugs</h2>
+          <h2 className="mb-2 text-primary">Manage Drugs</h2>
 
-          <p className="text-muted mb-2">
+          <p className="adddrug-meta mb-2">
             Total Drugs: <strong>{drugs.length}</strong>
           </p>
 
@@ -163,14 +163,15 @@ function ManageDrugsPage() {
         <div className="card p-4 shadow">
           <table className="table table-striped table-hover align-middle">
             <thead
-              style={{
-                position: "sticky",
-                top: 0,
-                zIndex: 1010,
-                backgroundColor: "white",
-                padding: "15px 0",
-                boxShadow: "0 2px 4px rgba(0,0,0,0.08)",
-              }}
+              className="table-sticky-header"
+              // style={{
+              //   position: "sticky",
+              //   top: 0,
+              //   zIndex: 1010,
+              //   backgroundColor: "white",
+              //   padding: "15px 0",
+              //   boxShadow: "0 2px 4px rgba(0,0,0,0.08)",
+              // }}
             >
               <tr>
                 <th>#</th>
