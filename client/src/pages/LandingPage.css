@@ -259,3 +259,289 @@
   font-size: 0.9rem;
   line-height: 1.5;
 }
+
+/* ---------------------------- */
+/* RX CAPSULE (FIXED VERSION) */
+/* ---------------------------- */
+
+.capsule-section {
+  padding: 80px 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.capsule-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* OUTER FLOAT LAYER */
+.capsule-float {
+  animation: floatCapsule 4s ease-in-out infinite;
+  display: flex;
+  justify-content: center;
+}
+
+/* ROTATION LAYER */
+.capsule-rotate {
+  animation: glowShift 6s ease-in-out infinite;
+}
+
+/* CORE CAPSULE */
+.capsule {
+  position: relative;
+  z-index: 1;
+  width: 420px;
+  height: 150px;
+
+  filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.15));
+  animation: modeShift 5s ease-in-out infinite;
+  overflow: hidden;
+}
+
+/* LEFT SIDE */
+.capsule-left {
+  position: absolute;
+  left: 0;
+  width: 50%;
+  height: 100%;
+
+  background: linear-gradient(135deg, #91f499, #1aab1a);
+
+  border-radius: 90px 0 0 90px;
+}
+
+/* RIGHT SIDE */
+.capsule-right {
+  position: absolute;
+  right: 0;
+  width: 50%;
+  height: 100%;
+
+  background: linear-gradient(135deg, #ffffff, #e9eef7);
+
+  border-radius: 0 90px 90px 0;
+}
+
+/* CENTER LINE */
+.capsule::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 12%;
+  width: 2px;
+  height: 76%;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* LABEL */
+.capsule-label {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  word-break: break-word;
+
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  padding: 0 10px;
+
+  z-index: 2;
+  transition: opacity 0.7s ease;
+}
+
+/* LEFT SIDE TEXT */
+.capsule-label.left {
+  left: 0;
+  color: white;
+  /* animation: leftPulse 5s ease-in-out infinite; */
+}
+
+/* RIGHT SIDE TEXT */
+.capsule-label.right {
+  right: 0;
+  color: #1aab1a;
+  /* animation: rightPulse 5s ease-in-out infinite; */
+}
+
+.capsule.quiz .capsule-label.left {
+  opacity: 1;
+}
+
+.capsule.quiz .capsule-label.right {
+  opacity: 0.18;
+}
+
+.capsule.flash .capsule-label.left {
+  opacity: 0.18;
+}
+
+.capsule.flash .capsule-label.right {
+  opacity: 1;
+}
+/* 
+.capsule.quiz .capsule-label.left {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+.capsule.quiz .capsule-label.right {
+  opacity: 0.25;
+  transform: scale(0.95);
+}
+
+.capsule.flash .capsule-label.left {
+  opacity: 0.25;
+  transform: scale(0.95);
+}
+
+.capsule.flash .capsule-label.right {
+  opacity: 1;
+  transform: scale(1.05);
+  font-size: 1.1rem;
+} */
+
+/* FLOAT */
+@keyframes floatCapsule {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes modeShift {
+  0%,
+  100% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.12);
+  }
+}
+
+@keyframes glowShift {
+  0% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.08);
+  }
+  100% {
+    filter: brightness(1);
+  }
+}
+
+.capsule-sub {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  margin-top: 20px;
+
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 500;
+
+  transition: opacity 0.7s ease;
+
+  opacity: 0;
+}
+.capsule-sub.left {
+  color: #2e7d32;
+}
+
+.capsule-sub.right {
+  color: #607089;
+}
+
+.capsule-sub.left.quiz {
+  opacity: 1;
+}
+
+.capsule-sub.right.flash {
+  opacity: 1;
+}
+
+.capsule-sub-row {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+
+  max-width: 340px;
+  margin: 18px auto 0 auto;
+}
+
+/* .capsule-sub-row.quiz .left {
+  opacity: 1;
+}
+
+.capsule-sub-row.quiz .right {
+  opacity: 0;
+}
+
+.capsule-sub-row.flash .left {
+  opacity: 0;
+}
+
+.capsule-sub-row.flash .right {
+  opacity: 1;
+} */
+
+.capsule::before {
+  content: "";
+  position: absolute;
+  top: -20%;
+  left: -35%;
+
+  width: 35%;
+  height: 140%;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.55),
+    transparent
+  );
+
+  transform: rotate(18deg);
+
+  animation: capsuleShimmer 4s ease-in-out infinite;
+
+  z-index: 5;
+  pointer-events: none;
+}
+
+@keyframes capsuleShimmer {
+  0% {
+    left: -40%;
+    opacity: 0;
+  }
+
+  35% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  65% {
+    opacity: 1;
+  }
+
+  100% {
+    left: 120%;
+    opacity: 0;
+  }
+}

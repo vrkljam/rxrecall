@@ -1,9 +1,18 @@
 import { useNavigate } from "react-router-dom";
 import RxRecallLogo from "../components/RxRecallLogo";
 import "./LandingPage.css";
+import { useEffect, useState } from "react";
 
 function LandingPage() {
   const navigate = useNavigate();
+  const [mode, setMode] = useState("quiz");
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setMode((prev) => (prev === "quiz" ? "flash" : "quiz"));
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className="landing-page">
@@ -39,7 +48,7 @@ function LandingPage() {
 
       {/* Features */}
       <section className="container py-5">
-        <div className="row g-4">
+        {/* <div className="row g-4">
           <div className="col-md-6">
             <div className="feature-card h-100">
               <h3>📚 Flashcards</h3>
@@ -58,6 +67,29 @@ function LandingPage() {
               </p>
             </div>
           </div>
+        </div> */}
+
+        <div className="capsule-wrapper">
+          <div className="capsule-float">
+            <div className="capsule-rotate">
+              <div className={` capsule ${mode}`}>
+                <div className="capsule-left"></div>
+
+                <div className="capsule-right"></div>
+
+                <div className="capsule-label left">QUIZ</div>
+
+                <div className="capsule-label right">FLASHCARDS</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className={`capsule-sub-row ${mode}`}>
+          <p className={`capsule-sub left ${mode}`}>Test your knowledge</p>
+
+          <p className={`capsule-sub right ${mode}`}>
+            Learn through repetition
+          </p>
         </div>
       </section>
 
